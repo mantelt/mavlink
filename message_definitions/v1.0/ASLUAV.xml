@@ -26,9 +26,9 @@
         <param index="6">Empty</param>
         <param index="7">Empty</param>
       </entry>
-      <entry name="MAV_CMD_SATCOM_ENABLE" value="40003">
-	<description>Enable SATCOM</description>
-        <param index="1">Enable</param>
+      <entry name="MAV_CMD_SATCOM_CONTROL" value="40003">
+	<description>Control SATCOM</description>
+        <param index="1">0: disable, 1: enable</param>
         <param index="2">User defined</param>
         <param index="3">User defined</param>
         <param index="4">User defined</param>
