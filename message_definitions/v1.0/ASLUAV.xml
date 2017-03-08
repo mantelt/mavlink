@@ -208,5 +208,12 @@
       <field type="float" name="pwr_brd_servo_4_amp">Power board servo1 current sensor</field>
       <field type="float" name="pwr_brd_aux_amp">Power board aux current sensor</field>
     </message>
+    <message id="213" name="WIND_SENSOR">
+        <description>Wind sensor data</description>
+        <field type="float" name="direction"> Wind Direction</field>
+        <field type="float" name="avg_mag"> Average wind measured</field>
+        <field type="float" name="max_mag"> Maximum wind measured</field>
+        <field type="float" name="std_dev"> Standard Deviation of measured wind magnitude</field>
+    </message>
   </messages>
 </mavlink>
