@@ -31,7 +31,7 @@ CLIBRARY_GIT_REMOTENAME=origin
 MAVLINK_PATH=$PWD
 
 if (( $# < 1 )); then
-	GIT_BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+	GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 	echo -e "\0033[34mUsing current branch ($GIT_BRANCH)\0033[0m\n"
 	git push $MAVLINK_GIT_REMOTENAME $GIT_BRANCH
 else
@@ -59,21 +59,29 @@ do
 	CLIBRARY_GIT_BRANCHNAME=$GIT_BRANCH
 
 	cd $MAVLINK_PATH
-
-	if ( (($# == 1)) || [ ! -d "$CLIBRARY_PATH" ] ); then
+	
+	if [ -d "$CLIBRARY_PATH" ]; then
+		cd $CLIBRARY_PATH
+		if [[ "$CLIBRARY_PATH" != $(git rev-parse --show-toplevel) ]]; then
+			echo -e "\0033[31mERROR! $CLIBRARY_PATH exists already, but does not seem to be a git root directory!\0033[0m\n"
+			exit 1
+		fi
+		git fetch $CLIBRARY_GIT_REMOTENAME
+	else
 		mkdir -p include/mavlink
 		cd include/mavlink
 		git clone git@github.com:ethz-asl/fw_mavlink_c_library_v$MAVLINK_VERSION.git v$MAVLINK_VERSION.0
-	else
-		echo -e "\0033[31mWARNING! $CLIBRARY_PATH exists already, this might cause issues!\0033[0m\n"
-		cd $CLIBRARY_PATH
-		git fetch $CLIBRARY_GIT_REMOTENAME
 	fi
 
+	# check if branch already exists
 	cd $CLIBRARY_PATH
-	CLIBRARY_PARENT=$(git log --grep="$MAVLINK_GITHASH_PARENT" --all --format="%H" -n 1)
-	git checkout -B $GIT_BRANCH $CLIBRARY_PARENT
-
+	CLIBRARY_BRANCH_EXISTS=$(git rev-parse --quiet --verify $CLIBRARY_GIT_BRANCHNAME)
+	if [ -n "$CLIBRARY_BRANCH_EXISTS" ]; then
+		git checkout $CLIBRARY_GIT_BRANCHNAME
+	else
+		CLIBRARY_PARENT=$(git log --grep="$MAVLINK_GITHASH_PARENT" --all --format="%H" -n 1)
+		git checkout -b $GIT_BRANCH $CLIBRARY_PARENT
+	fi
 	cd $MAVLINK_PATH
 
 	# delete old c headers
