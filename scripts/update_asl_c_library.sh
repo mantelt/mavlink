@@ -102,6 +102,6 @@ do
 	git commit -m "$COMMIT_MESSAGE"
 
 	# push to c_library repository
-	# git push $CLIBRARY_GIT_REMOTENAME $CLIBRARY_GIT_BRANCHNAME || exit 1
-	# echo -e "\0033[34mHeaders updated and pushed successfully\0033[0m"
+	git push $CLIBRARY_GIT_REMOTENAME $CLIBRARY_GIT_BRANCHNAME || exit 1
+	echo -e "\0033[34mHeaders updated and pushed successfully\0033[0m"
 done
