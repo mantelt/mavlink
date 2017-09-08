@@ -65,6 +65,7 @@ do
 		cd include/mavlink
 		git clone git@github.com:ethz-asl/fw_mavlink_c_library_v$MAVLINK_VERSION.git v$MAVLINK_VERSION.0
 	else
+		echo -e "\0033[31mWARNING! $CLIBRARY_PATH exists already, this might cause issues!\0033[0m\n"
 		cd $CLIBRARY_PATH
 		git fetch $CLIBRARY_GIT_REMOTENAME
 	fi
