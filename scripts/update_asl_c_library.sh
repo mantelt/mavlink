@@ -49,7 +49,7 @@ fi
 MAVLINK_GITHASH=$(git rev-parse HEAD)
 MAVLINK_GITHASH_PARENT=$(git rev-parse HEAD~1)
 
-for MAVLINK_VERSION in 1 2
+for MAVLINK_VERSION in 2
 do
 	# Prepare directories
 	echo -e "\0033[34mPreparing directories for v$MAVLINK_VERSION\0033[0m\n"
@@ -90,7 +90,15 @@ do
 	# generate new c headers
 	echo -e "\0033[34mStarting to generate c headers for v$MAVLINK_VERSION\0033[0m\n"
 
+	generate_headers ardupilotmega $MAVLINK_VERSION
+	generate_headers autoquad $MAVLINK_VERSION
+	generate_headers matrixpilot $MAVLINK_VERSION
+	generate_headers minimal $MAVLINK_VERSION
+	generate_headers slugs $MAVLINK_VERSION
+	generate_headers test $MAVLINK_VERSION
 	generate_headers ASLUAV $MAVLINK_VERSION
+	generate_headers standard $MAVLINK_VERSION
+
 	mkdir -p $CLIBRARY_PATH/message_definitions
 	cp message_definitions/v1.0/* $CLIBRARY_PATH/message_definitions/.
 	echo -e "\0033[34mFinished generating c headers for v$MAVLINK_VERSION\0033[0m\n"
@@ -102,6 +110,6 @@ do
 	git commit -m "$COMMIT_MESSAGE"
 
 	# push to c_library repository
-	git push $CLIBRARY_GIT_REMOTENAME $CLIBRARY_GIT_BRANCHNAME || exit 1
-	echo -e "\0033[34mHeaders updated and pushed successfully\0033[0m"
+	#git push $CLIBRARY_GIT_REMOTENAME $CLIBRARY_GIT_BRANCHNAME || exit 1
+	#echo -e "\0033[34mHeaders updated and pushed successfully\0033[0m"
 done
