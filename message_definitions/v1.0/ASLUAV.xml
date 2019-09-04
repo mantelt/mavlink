@@ -289,5 +289,17 @@
       <field type="float" name="sideslip" units="deg">Sideslip angle</field>
       <field type="uint8_t" name="sideslip_valid">Sideslip angle measurement valid</field>
     </message>
+    <message id="216" name="HIL_EXTENDED">
+      <description>Generic message to send additional variables from HIL simulation to autopilot</description>
+      <field type="uint64_t" name="timestamp" units="us">Timestamp</field>
+      <field type="float" name="var1">Variable 1</field>
+      <field type="float" name="var2">Variable 2</field>
+      <field type="float" name="var3">Variable 3</field>
+      <field type="float" name="var4">Variable 4</field>
+      <field type="float" name="var5">Variable 5</field>
+      <field type="float" name="var6">Variable 6</field>
+      <field type="float" name="var7">Variable 7</field>
+      <field type="float" name="var8">Variable 8</field>
+    </message>
   </messages>
 </mavlink>
