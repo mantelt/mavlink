@@ -301,5 +301,25 @@
       <field type="float" name="var7">Variable 7</field>
       <field type="float" name="var8">Variable 8</field>
     </message>
+    <message id="217" name="NDI_STATUS">
+      <description>Status message for NDI controller</description>
+      <field type="uint64_t" name="timestamp" units="us">Timestamp</field>
+      <field type="float" name="airsp_setpoint_raw" units="m/s">Airspeed setpoint before filtering/constraining</field>
+      <field type="float" name="fpa_setpoint_raw" units="deg">Flight path angle setpoint before filtering/constraining</field>
+      <field type="float" name="roll_setpoint_raw" units="deg">Roll angle setpoint before filtering/constraining</field>
+      <field type="float" name="airsp_setpoint" units="m/s">Filtered airspeed setpoint</field>
+      <field type="float" name="fpa_setpoint" units="deg">Filtered flight path angle setpoint</field>
+      <field type="float" name="roll_setpoint" units="deg">Filtered roll angle setpoint</field>
+      <field type="float" name="throt_setpoint">Throttle setpoint</field>
+      <field type="float" name="throt_fb">Throttle feedback control</field>
+      <field type="float" name="throt_trim">Throttle trim control</field>
+      <field type="float" name="pitch_setpoint" units="deg">Pitch setpoint</field>
+      <field type="float" name="pitch_fb" units="deg">Pitch feedback control</field>
+      <field type="float" name="pitch_trim" units="deg">Pitch trim control</field>
+      <field type="float" name="err_bound" units="m">Track error boundary</field>
+      <field type="float" name="filtered_airsp" units="m/s">Filtered airspeed state</field>
+      <field type="float" name="filtered_fpa" units="deg">Filtered flight path angle state</field>
+      <field type="float" name="air_density" units="kg/m^3">Calculated air density</field>
+    </message>
   </messages>
 </mavlink>
