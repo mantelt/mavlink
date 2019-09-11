@@ -319,6 +319,8 @@
       <field type="float" name="err_bound" units="m">Track error boundary</field>
       <field type="float" name="filtered_airsp" units="m/s">Filtered airspeed state</field>
       <field type="float" name="filtered_fpa" units="deg">Filtered flight path angle state</field>
+      <field type="float" name="filtered_airsp_rate" units="m/s^2">Filtered airspeed rate</field>
+      <field type="float" name="filtered_fpa_rate" units="deg/s">Filtered flight path angle rate</field>
       <field type="float" name="air_density" units="kg/m^3">Calculated air density</field>
     </message>
   </messages>
